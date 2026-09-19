@@ -29,7 +29,7 @@ const moduleData = {
     description: 'Inspect a 3D face scan, selfie, and simulated government ID. Separate real signs of fraud from the access barriers people face when proving who they are.',
     question: 'What does “valid” look like—and who gets excluded?',
     action: 'Inspect an identity',
-    visual: `<div class="module-visual kyc-visual"><div class="visual-header"><span>KYC REVIEW / APPLICANT 07</span><b>● LIVENESS CHECK</b></div><div class="kyc-screen"><div class="face-scan"><div class="face-shape"></div><span class="scan-ring one"></span><span class="scan-ring two"></span><i>98.7% MATCH</i></div><div class="id-card"><small>REPUBLIC OF THE PHILIPPINES</small><div></div><b>MARIA A. CRUZ</b><em>IDENTITY CARD</em></div></div><div class="visual-tags"><span>SELFIE</span><span>GOV ID</span><span>LIVENESS</span></div></div>`
+    visual: `<img src="1.png"  style="width: 100%; height: auto;">`
   },
   credit: {
     index: 'MODULE 03',
@@ -37,7 +37,7 @@ const moduleData = {
     description: 'Review payment history, debt ratio, and the AI recommendation. Decide when to trust a model—and when a seemingly objective number needs human judgment.',
     question: 'Can an efficient score still create an unfair future?',
     action: 'Assess an application',
-    visual: `<div class="module-visual credit-visual"><div class="visual-header"><span>LOAN REVIEW / APPLICANT 10</span><b>● AI RECOMMENDATION</b></div><div class="credit-screen"><div class="score-dial"><strong>0.62</strong><span>SUITABILITY SCORE</span></div><div class="credit-bars"><p><span>PAYMENT HISTORY</span><i><b style="width:72%"></b></i></p><p><span>DEBT RATIO</span><i><b style="width:43%"></b></i></p><p><span>AI CONFIDENCE</span><i><b style="width:82%"></b></i></p></div></div><div class="visual-tags"><span>HISTORY</span><span>ARREARS</span><span>DEBT RATIO</span></div></div>`
+    visual: `<img src="4.png"  style="width: 100%; height: auto;">`
   }
 };
 
