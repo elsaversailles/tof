@@ -222,7 +222,7 @@ function restoreDraft() {
   }
 }
 
-const ghlWebhookUrl = 'https://services.leadconnectorhq.com/hooks/HzaOxDVzGTWAhjOdBfyG/webhook-trigger/d6e89922-f463-4e8c-acef-d1e0b64225da';
+const ghlWebhookUrl = 'https://services.leadconnectorhq.com/hooks/HzaOxDVzGTWAhjOdBfyG/webhook-trigger/9a31b16f-a107-4f47-8a38-71fcc3b73c36';
 
 async function submitEvaluation() {
   const data = collectEvaluation();
