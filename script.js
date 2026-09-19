@@ -17,10 +17,10 @@ document.querySelectorAll('.site-nav a').forEach((link) => {
 const moduleData = {
   fraud: {
     index: 'MODULE 01',
-    title: 'Fraud detection<br />without assumptions.',
-    description: 'Analyze transaction details, CCTV-style feeds, and customer profiles. Identify risk without teaching your model that unfamiliarity, location, or hardship equals fraud.',
-    question: 'When does a pattern become a prejudice?',
-    action: 'Review a transaction',
+    title: 'Suspicious activity.<br />Or a <em>missing detail?</em>',
+    description: 'Review transactions, camera feeds, and customer profiles. Decide what deserves a flag—and what deserves a second look.',
+    question: 'Is the transaction suspicious, or just unfamiliar?',
+    action: 'Request a playtest',
     visual: `<div class="module-visual fraud-visual"><div class="visual-header"><span>LIVE REVIEW / CASE 03</span><b>● RECORDING</b></div><div class="cctv-scene"><span class="timestamp">09:41:47</span><div class="cctv-figure"></div><div class="street-line"></div></div><div class="visual-tags"><span>LOCATION</span><span>TIME</span><span>PRICE</span><span>ITEM</span></div></div>`
   },
   kyc: {
@@ -48,7 +48,7 @@ function setModule(key) {
   const module = moduleData[key];
   if (!module || !display) return;
   display.dataset.activeModule = key;
-  display.innerHTML = `${module.visual}<div class="module-content"><p class="module-index">${module.index}</p><h3>${module.title}</h3><p>${module.description}</p><div class="module-question"><span>THE QUESTION</span><p>${module.question}</p></div><a href="#evaluation" class="text-link light">${module.action} <span>→</span></a></div>`;
+  display.innerHTML = `${module.visual}<div class="module-content"><p class="module-index">${module.index}</p><h3>${module.title}</h3><p>${module.description}</p><div class="module-question"><span>THE QUESTION</span><p>${module.question}</p></div><a href="#play" class="text-link light">${module.action} <span>→</span></a></div>`;
   tabs.forEach((tab) => {
     const active = tab.dataset.module === key;
     tab.classList.toggle('active', active);
