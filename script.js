@@ -17,27 +17,27 @@ document.querySelectorAll('.site-nav a').forEach((link) => {
 const moduleData = {
   fraud: {
     index: 'MODULE 01',
-    title: 'Suspicious activity.<br />Or a <em>missing detail?</em>',
-    description: 'Review transactions, camera feeds, and customer profiles. Decide what deserves a flag—and what deserves a second look.',
+    title: 'Suspicious activity<br />Or a <em>missing detail?</em>',
+    description: 'Review transactions, camera feeds, and customer profiles Decide what deserves a flag—and what deserves a second look',
     question: 'Is the transaction suspicious, or just unfamiliar?',
     action: 'Request a playtest',
     visual: `<div class="module-visual fraud-visual"><div class="visual-header"><span>LIVE REVIEW / CASE 03</span><b>● RECORDING</b></div><div class="cctv-scene"><span class="timestamp">09:41:47</span><div class="cctv-figure"></div><div class="street-line"></div></div><div class="visual-tags"><span>LOCATION</span><span>TIME</span><span>PRICE</span><span>ITEM</span></div></div>`
   },
   kyc: {
     index: 'MODULE 02',
-    title: 'Verify identity.<br />Respect the person.',
-    description: 'Inspect a 3D face scan, selfie, and simulated government ID. Separate real signs of fraud from the access barriers people face when proving who they are.',
+    title: 'Verify identity<br />Respect the person',
+    description: 'Inspect a 3D face scan, selfie, and simulated government ID Separate real signs of fraud from the access barriers people face when proving who they are',
     question: 'What does “valid” look like—and who gets excluded?',
     action: 'Inspect an identity',
-    visual: `<img src="1.png"  style="width: 100%; height: auto;">`
+    visual: `<img src="1.png" style="width: 100%; height: auto;">`
   },
   credit: {
     index: 'MODULE 03',
-    title: 'Score the loan.<br />Question the score.',
-    description: 'Review payment history, debt ratio, and the AI recommendation. Decide when to trust a model—and when a seemingly objective number needs human judgment.',
+    title: 'Score the loan<br />Question the score',
+    description: 'Review payment history, debt ratio, and the AI recommendation Decide when to trust a model—and when a seemingly objective number needs human judgment',
     question: 'Can an efficient score still create an unfair future?',
     action: 'Assess an application',
-    visual: `<img src="4.png"  style="width: 100%; height: auto;">`
+    visual: `<img src="4.png" style="width: 100%; height: auto;">`
   }
 };
 
@@ -60,51 +60,51 @@ tabs.forEach((tab) => tab.addEventListener('click', () => setModule(tab.dataset.
 
 const evaluationCategories = [
   { id: 'functional-suitability', name: 'Functional suitability', description: 'Does the prototype provide the right functions for the specified learning and evaluation tasks?', items: [
-    ['functional-completeness', 'Functional completeness', 'Coverage of the specified tasks and user objectives.'],
-    ['functional-correctness', 'Functional correctness', 'Delivery of correct results with the needed degree of precision.'],
-    ['functional-appropriateness', 'Functional appropriateness', 'How well the functions facilitate the intended tasks and objectives.']
+    ['functional-completeness', 'Functional completeness', 'Coverage of the specified tasks and user objectives'],
+    ['functional-correctness', 'Functional correctness', 'Delivery of correct results with the needed degree of precision'],
+    ['functional-appropriateness', 'Functional appropriateness', 'How well the functions facilitate the intended tasks and objectives']
   ]},
   { id: 'performance-efficiency', name: 'Performance efficiency', description: 'Does the prototype perform acceptably relative to the resources it uses?', items: [
-    ['time-behaviour', 'Time behaviour', 'Whether response, processing, and throughput times meet expectations.'],
-    ['resource-utilization', 'Resource utilization', 'Whether the amount and type of resources used are appropriate.'],
-    ['capacity', 'Capacity', 'Whether system parameter limits meet the stated requirements.']
+    ['time-behaviour', 'Time behaviour', 'Whether response, processing, and throughput times meet expectations'],
+    ['resource-utilization', 'Resource utilization', 'Whether the amount and type of resources used are appropriate'],
+    ['capacity', 'Capacity', 'Whether system parameter limits meet the stated requirements']
   ]},
   { id: 'compatibility', name: 'Compatibility', description: 'Can the prototype perform its functions alongside relevant systems and environments?', items: [
-    ['co-existence', 'Co-existence', 'Ability to operate efficiently in a shared environment without detrimental impact.'],
-    ['interoperability', 'Interoperability', 'Ability to exchange and use information with other systems or components.']
+    ['co-existence', 'Co-existence', 'Ability to operate efficiently in a shared environment without detrimental impact'],
+    ['interoperability', 'Interoperability', 'Ability to exchange and use information with other systems or components']
   ]},
   { id: 'usability', name: 'Usability', description: 'Can intended users learn, operate, and benefit from the prototype effectively and satisfactorily?', items: [
-    ['appropriateness-recognizability', 'Appropriateness recognizability', 'Whether users can recognize that the system is appropriate for their needs.'],
-    ['learnability', 'Learnability', 'How effectively and satisfactorily users can learn to use the system.'],
-    ['operability', 'Operability', 'How easy the system is to operate and control.'],
-    ['user-error-protection', 'User error protection', 'How well the system protects users against making errors.'],
-    ['user-interface-aesthetics', 'User interface aesthetics', 'Whether the interface enables a pleasing and satisfying interaction.'],
-    ['accessibility', 'Accessibility', 'How well the system supports users with a wide range of characteristics and capabilities.']
+    ['appropriateness-recognizability', 'Appropriateness recognizability', 'Whether users can recognize that the system is appropriate for their needs'],
+    ['learnability', 'Learnability', 'How effectively and satisfactorily users can learn to use the system'],
+    ['operability', 'Operability', 'How easy the system is to operate and control'],
+    ['user-error-protection', 'User error protection', 'How well the system protects users against making errors'],
+    ['user-interface-aesthetics', 'User interface aesthetics', 'Whether the interface enables a pleasing and satisfying interaction'],
+    ['accessibility', 'Accessibility', 'How well the system supports users with a wide range of characteristics and capabilities']
   ]},
   { id: 'reliability', name: 'Reliability', description: 'Can the prototype perform its specified functions consistently under stated conditions?', items: [
-    ['maturity', 'Maturity', 'Ability to meet reliability needs under normal operation.'],
-    ['availability', 'Availability', 'Whether the system is operational and accessible when needed.'],
-    ['fault-tolerance', 'Fault tolerance', 'Ability to operate as intended despite hardware or software faults.'],
-    ['recoverability', 'Recoverability', 'Ability to restore affected data and re-establish the desired state after interruption or failure.']
+    ['maturity', 'Maturity', 'Ability to meet reliability needs under normal operation'],
+    ['availability', 'Availability', 'Whether the system is operational and accessible when needed'],
+    ['fault-tolerance', 'Fault tolerance', 'Ability to operate as intended despite hardware or software faults'],
+    ['recoverability', 'Recoverability', 'Ability to restore affected data and re-establish the desired state after interruption or failure']
   ]},
   { id: 'security', name: 'Security', description: 'Does the prototype protect information and provide appropriate access?', items: [
-    ['confidentiality', 'Confidentiality', 'Whether data are accessible only to authorized users.'],
-    ['integrity', 'Integrity', 'Protection against unauthorized modification of programs or data.'],
-    ['non-repudiation', 'Non-repudiation', 'Whether actions or events can be proven to have taken place.'],
-    ['accountability', 'Accountability', 'Whether actions can be traced uniquely to an entity.'],
-    ['authenticity', 'Authenticity', 'Whether the identity of a subject or resource can be proved as claimed.']
+    ['confidentiality', 'Confidentiality', 'Whether data are accessible only to authorized users'],
+    ['integrity', 'Integrity', 'Protection against unauthorized modification of programs or data'],
+    ['non-repudiation', 'Non-repudiation', 'Whether actions or events can be proven to have taken place'],
+    ['accountability', 'Accountability', 'Whether actions can be traced uniquely to an entity'],
+    ['authenticity', 'Authenticity', 'Whether the identity of a subject or resource can be proved as claimed']
   ]},
   { id: 'maintainability', name: 'Maintainability', description: 'Can the prototype be effectively analyzed, improved, corrected, and adapted?', items: [
-    ['modularity', 'Modularity', 'Use of discrete components so change has minimal impact elsewhere.'],
-    ['reusability', 'Reusability', 'Ability for an asset to be used in more than one system or other assets.'],
-    ['analysability', 'Analysability', 'Efficiency of assessing the impact of change or diagnosing deficiencies.'],
-    ['modifiability', 'Modifiability', 'Ability to be modified effectively without introducing defects or degrading quality.'],
-    ['testability', 'Testability', 'Efficiency of establishing and performing tests to determine whether criteria are met.']
+    ['modularity', 'Modularity', 'Use of discrete components so change has minimal impact elsewhere'],
+    ['reusability', 'Reusability', 'Ability for an asset to be used in more than one system or other assets'],
+    ['analysability', 'Analysability', 'Efficiency of assessing the impact of change or diagnosing deficiencies'],
+    ['modifiability', 'Modifiability', 'Ability to be modified effectively without introducing defects or degrading quality'],
+    ['testability', 'Testability', 'Efficiency of establishing and performing tests to determine whether criteria are met']
   ]},
   { id: 'portability', name: 'Portability', description: 'Can the prototype be transferred, installed, or adapted across required environments?', items: [
-    ['adaptability', 'Adaptability', 'Ability to be adapted effectively for differing or evolving environments.'],
-    ['installability', 'Installability', 'Ability to be successfully installed or uninstalled in its specified environment.'],
-    ['replaceability', 'Replaceability', 'Ability to replace another product for the same purpose in the same environment.']
+    ['adaptability', 'Adaptability', 'Ability to be adapted effectively for differing or evolving environments'],
+    ['installability', 'Installability', 'Ability to be successfully installed or uninstalled in its specified environment'],
+    ['replaceability', 'Replaceability', 'Ability to replace another product for the same purpose in the same environment']
   ]}
 ];
 
@@ -185,7 +185,7 @@ function setSaveStatus(message, type = '') {
   saveStatus.className = `save-status ${type}`.trim();
 }
 
-function saveDraft(message = 'Draft saved on this device.') {
+function saveDraft(message = 'Draft saved on this device') {
   const data = collectEvaluation();
   if (!data) return false;
   try {
@@ -193,7 +193,7 @@ function saveDraft(message = 'Draft saved on this device.') {
     setSaveStatus(message, 'success');
     return true;
   } catch (error) {
-    setSaveStatus('Unable to save locally. Export a JSON copy instead.', 'error');
+    setSaveStatus('Unable to save locally Export a JSON copy instead', 'error');
     return false;
   }
 }
@@ -216,27 +216,42 @@ function restoreDraft() {
       const field = evaluationForm.elements[key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)];
       if (field) field.value = value;
     });
-    setSaveStatus('Saved draft restored from this device.', 'success');
+    setSaveStatus('Saved draft restored from this device', 'success');
   } catch (error) {
-    setSaveStatus('Saved draft could not be restored.', 'error');
+    setSaveStatus('Saved draft could not be restored', 'error');
   }
 }
 
-function exportEvaluation() {
+const ghlWebhookUrl = 'https://services.leadconnectorhq.com/hooks/HzaOxDVzGTWAhjOdBfyG/webhook-trigger/d6e89922-f463-4e8c-acef-d1e0b64225da';
+
+async function submitEvaluation() {
   const data = collectEvaluation();
   if (!data) return;
-  saveDraft('Draft saved and JSON exported.');
-  const filenameDate = new Date().toISOString().slice(0, 10);
-  const content = JSON.stringify({ ...data, scores: calculateScores(data.ratings) }, null, 2);
-  const file = new Blob([content], { type: 'application/json' });
-  const url = URL.createObjectURL(file);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `train-or-fail-iso25010-${filenameDate}.json`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
+  const rated = updateScores();
+  if (!rated) {
+    setSaveStatus('Rate at least one criterion before submitting', 'error');
+    return;
+  }
+  const submitButton = document.querySelector('#submit-evaluation');
+  if (submitButton) submitButton.disabled = true;
+  setSaveStatus('Submitting your evaluation…');
+  try {
+    const payload = { ...data, scores: calculateScores(data.ratings) };
+    const response = await fetch(ghlWebhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+    try { localStorage.removeItem(storageKey); } catch (error) { /* Browser storage may be unavailable */ }
+    evaluationForm?.reset();
+    updateScores();
+    setSaveStatus('Evaluation submitted, thank you', 'success');
+  } catch (error) {
+    setSaveStatus('Could not submit evaluation Check your connection and try again', 'error');
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
 }
 
 renderEvaluationCategories();
@@ -245,15 +260,15 @@ updateScores();
 
 evaluationForm?.addEventListener('input', () => {
   updateScores();
-  saveDraft('Changes saved locally.');
+  saveDraft('Changes saved locally');
 });
 
 document.querySelector('#save-draft')?.addEventListener('click', () => saveDraft());
-document.querySelector('#export-evaluation')?.addEventListener('click', exportEvaluation);
+document.querySelector('#submit-evaluation')?.addEventListener('click', submitEvaluation);
 document.querySelector('#clear-evaluation')?.addEventListener('click', () => {
-  if (!window.confirm('Clear this saved evaluation from this device? This cannot be undone.')) return;
+  if (!window.confirm('Clear this saved evaluation from this device? This cannot be undone')) return;
   evaluationForm?.reset();
-  try { localStorage.removeItem(storageKey); } catch (error) { /* Browser storage may be unavailable. */ }
+  try { localStorage.removeItem(storageKey); } catch (error) { /* Browser storage may be unavailable */ }
   updateScores();
-  setSaveStatus('Local draft cleared.');
+  setSaveStatus('Local draft cleared');
 });
