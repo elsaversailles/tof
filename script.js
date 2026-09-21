@@ -251,14 +251,24 @@ async function submitEvaluation() {
   if (submitButton) submitButton.disabled = true;
   setSaveStatus('Submitting your evaluation…');
   try {
-    let { error } = await insertEvaluationRow(data);
-    if (error) {
-      // Retry once: Supabase can occasionally return a transient error
-      // on the first request after a period of inactivity.
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      ({ error } = await insertEvaluationRow(data));
+    // Supabase's free-tier connection pooler can intermittently return a
+    // transient RLS error on an otherwise valid request. Retry a few times
+    // with backoff before treating it as a real failure.
+    const maxAttempts = 4;
+    let lastError = null;
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      const { error } = await insertEvaluationRow(data);
+      if (!error) {
+        lastError = null;
+        break;
+      }
+      lastError = error;
+      if (attempt < maxAttempts) {
+        setSaveStatus(`Submitting your evaluation… (retry ${attempt}/${maxAttempts - 1})`);
+        await new Promise((resolve) => setTimeout(resolve, 800 * attempt));
+      }
     }
-    if (error) throw error;
+    if (lastError) throw lastError;
     try { localStorage.removeItem(storageKey); } catch (storageError) { /* Browser storage may be unavailable */ }
     evaluationForm?.reset();
     updateScores();
