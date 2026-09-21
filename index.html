@@ -74,12 +74,12 @@
         <form id="expert-evaluation-form" class="evaluation-form">
           <div class="evaluation-notice"><span>i</span><p><b>Save your feedback.</b> Save a draft in this browser, then submit when you're ready.</p></div>
           <section class="form-block" aria-labelledby="profile-heading">
-            <div class="form-block-title"><h3 id="profile-heading">Part 1 / About you</h3><span>Optional</span></div>
+            <div class="form-block-title"><h3 id="profile-heading">Part 1 / About you</h3><span>Required</span></div>
             <div class="profile-grid">
-              <div class="form-field"><label for="expert-name">Name</label><input id="expert-name" name="expert-name" type="text" autocomplete="name" placeholder="Your full name" /></div>
-              <div class="form-field"><label for="expert-age">Age</label><input id="expert-age" name="expert-age" type="number" min="1" max="150" inputmode="numeric" placeholder="for example 26" /></div>
-              <div class="form-field"><label for="expert-institution">Organization or institution</label><input id="expert-institution" name="expert-institution" type="text" autocomplete="organization" placeholder="Organization or institution" /></div>
-              <div class="form-field"><label for="expert-designation">Role or position</label><input id="expert-designation" name="expert-designation" type="text" autocomplete="organization-title" placeholder="for example Software Engineer" /></div>
+              <div class="form-field"><label for="expert-name">Name <em class="required-mark">*</em></label><input id="expert-name" name="expert-name" type="text" autocomplete="name" placeholder="Your full name" required /><span class="field-error" data-error-for="expert-name" role="alert"></span></div>
+              <div class="form-field"><label for="expert-age">Age <em class="required-mark">*</em></label><input id="expert-age" name="expert-age" type="number" min="1" max="120" inputmode="numeric" placeholder="for example 26" required /><span class="field-error" data-error-for="expert-age" role="alert"></span></div>
+              <div class="form-field"><label for="expert-institution">Organization or institution <em class="required-mark">*</em></label><input id="expert-institution" name="expert-institution" type="text" autocomplete="organization" placeholder="Organization or institution" required /><span class="field-error" data-error-for="expert-institution" role="alert"></span></div>
+              <div class="form-field"><label for="expert-designation">Role or position <em class="required-mark">*</em></label><input id="expert-designation" name="expert-designation" type="text" autocomplete="organization-title" placeholder="for example Software Engineer" required /><span class="field-error" data-error-for="expert-designation" role="alert"></span></div>
             </div>
           </section>
           <section class="evaluation-summary" aria-label="Evaluation score summary">
@@ -87,16 +87,17 @@
             <div id="category-summary" class="summary-categories" aria-live="polite"></div>
           </section>
           <section class="form-block" aria-labelledby="ratings-heading">
-            <div class="form-block-title"><h3 id="ratings-heading">Part 2 / Rate your experience</h3><span>ISO/IEC 25010 product quality characteristics</span></div>
-            <p class="rating-legend"><b>Scale:</b> 1 = Poor · 2 = Moderate · 3 = Meets the criterion · 4 = Very strong. You may save an incomplete draft at any time.</p>
+            <div class="form-block-title"><h3 id="ratings-heading">Part 2 / Rate your experience <em class="required-mark">*</em></h3><span>ISO/IEC 25010 product quality characteristics</span></div>
+            <p class="rating-legend"><b>Scale:</b> 1 = Poor · 2 = Moderate · 3 = Meets the criterion · 4 = Very strong. Every criterion below must be rated before you can submit.</p>
+            <span class="field-error" data-error-for="ratings" role="alert"></span>
             <div id="rating-categories"></div>
           </section>
           <section class="form-block" aria-labelledby="feedback-heading">
-            <div class="form-block-title"><h3 id="feedback-heading">Part 3 / Share your feedback</h3><span>Every perspective helps</span></div>
+            <div class="form-block-title"><h3 id="feedback-heading">Part 3 / Share your feedback <em class="required-mark">*</em></h3><span>Every perspective helps</span></div>
             <div class="feedback-grid">
-              <div class="feedback-field"><label for="strengths">What worked well?</label><textarea id="strengths" name="strengths" placeholder="What worked especially well in the game?"></textarea></div>
-              <div class="feedback-field"><label for="improvements">What needs improvement?</label><textarea id="improvements" name="improvements" placeholder="What fell short or needs refinement?"></textarea></div>
-              <div class="feedback-field"><label for="additional-features">What would you add?</label><textarea id="additional-features" name="additional-features" placeholder="What features would improve the experience?"></textarea></div>
+              <div class="feedback-field"><label for="strengths">What worked well?</label><textarea id="strengths" name="strengths" placeholder="What worked especially well in the game?" minlength="10" required></textarea><span class="field-error" data-error-for="strengths" role="alert"></span></div>
+              <div class="feedback-field"><label for="improvements">What needs improvement?</label><textarea id="improvements" name="improvements" placeholder="What fell short or needs refinement?" minlength="10" required></textarea><span class="field-error" data-error-for="improvements" role="alert"></span></div>
+              <div class="feedback-field"><label for="additional-features">What would you add?</label><textarea id="additional-features" name="additional-features" placeholder="What features would improve the experience?" minlength="10" required></textarea><span class="field-error" data-error-for="additional-features" role="alert"></span></div>
             </div>
           </section>
           <div class="form-actions">

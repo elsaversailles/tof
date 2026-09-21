@@ -136,8 +136,8 @@ function collectEvaluation() {
   const profile = {
     name: formData.get('expert-name') || '',
     age: formData.get('expert-age') || '',
-    institution: formData.get('institution') || '',
-    designation: formData.get('designation') || ''
+    institution: formData.get('expert-institution') || '',
+    designation: formData.get('expert-designation') || ''
   };
   const ratings = {};
   evaluationCategories.forEach((category) => category.items.forEach(([id]) => {
@@ -185,6 +185,102 @@ function setSaveStatus(message, type = '') {
   if (!saveStatus) return;
   saveStatus.textContent = message;
   saveStatus.className = `save-status ${type}`.trim();
+}
+
+function setFieldError(fieldId, message) {
+  const errorEl = evaluationForm?.querySelector(`[data-error-for="${fieldId}"]`);
+  const inputEl = evaluationForm?.elements[fieldId];
+  if (errorEl) {
+    errorEl.textContent = message || '';
+    errorEl.classList.toggle('visible', Boolean(message));
+  }
+  if (inputEl) inputEl.classList.toggle('invalid', Boolean(message));
+}
+
+function clearAllFieldErrors() {
+  evaluationForm?.querySelectorAll('.field-error').forEach((el) => {
+    el.textContent = '';
+    el.classList.remove('visible');
+  });
+  evaluationForm?.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
+  evaluationForm?.querySelectorAll('.rating-category.invalid').forEach((el) => el.classList.remove('invalid'));
+}
+
+/**
+ * Validates every required field in the evaluation form.
+ * Returns { valid: boolean, firstInvalidElement: Element|null }.
+ * All fields (profile, every rating criterion, and every feedback question)
+ * must be answered appropriately before the form can be submitted.
+ */
+function validateEvaluation() {
+  if (!evaluationForm) return { valid: false, firstInvalidElement: null };
+  clearAllFieldErrors();
+  let firstInvalidElement = null;
+
+  const markInvalid = (fieldId, message, element) => {
+    setFieldError(fieldId, message);
+    if (!firstInvalidElement) firstInvalidElement = element || evaluationForm.elements[fieldId];
+  };
+
+  const nameValue = evaluationForm.elements['expert-name']?.value.trim() || '';
+  if (!nameValue) {
+    markInvalid('expert-name', 'Please enter your name');
+  } else if (nameValue.length < 2) {
+    markInvalid('expert-name', 'Name looks too short');
+  }
+
+  const ageRaw = evaluationForm.elements['expert-age']?.value.trim() || '';
+  const ageValue = Number(ageRaw);
+  if (!ageRaw) {
+    markInvalid('expert-age', 'Please enter your age');
+  } else if (!Number.isFinite(ageValue) || ageValue < 1 || ageValue > 120) {
+    markInvalid('expert-age', 'Enter a valid age between 1 and 120');
+  }
+
+  const institutionValue = evaluationForm.elements['expert-institution']?.value.trim() || '';
+  if (!institutionValue) {
+    markInvalid('expert-institution', 'Please enter your organization or institution');
+  }
+
+  const designationValue = evaluationForm.elements['expert-designation']?.value.trim() || '';
+  if (!designationValue) {
+    markInvalid('expert-designation', 'Please enter your role or position');
+  }
+
+  const formData = new FormData(evaluationForm);
+  let unratedCount = 0;
+  let firstUnratedCategory = null;
+  evaluationCategories.forEach((category) => {
+    const categoryElement = evaluationForm.querySelector(`.rating-category[data-category="${category.id}"]`);
+    let categoryHasUnrated = false;
+    category.items.forEach(([id]) => {
+      const value = Number(formData.get(`rating-${id}`));
+      if (!Number.isFinite(value) || value < 1 || value > 4) {
+        unratedCount += 1;
+        categoryHasUnrated = true;
+      }
+    });
+    if (categoryHasUnrated) {
+      categoryElement?.classList.add('invalid');
+      if (!firstUnratedCategory) firstUnratedCategory = categoryElement;
+    }
+  });
+  if (unratedCount > 0) {
+    setFieldError('ratings', `Rate every criterion before submitting (${unratedCount} remaining)`);
+    if (!firstInvalidElement) firstInvalidElement = firstUnratedCategory;
+  }
+
+  const feedbackFields = [
+    ['strengths', 'Tell us what worked well (at least 10 characters)'],
+    ['improvements', 'Tell us what needs improvement (at least 10 characters)'],
+    ['additional-features', 'Tell us what you would add (at least 10 characters)']
+  ];
+  feedbackFields.forEach(([id, message]) => {
+    const value = evaluationForm.elements[id]?.value.trim() || '';
+    if (value.length < 10) markInvalid(id, message);
+  });
+
+  return { valid: !firstInvalidElement, firstInvalidElement };
 }
 
 function saveDraft(message = 'Draft saved on this device') {
@@ -242,9 +338,12 @@ async function insertEvaluationRow(data) {
 async function submitEvaluation() {
   const data = collectEvaluation();
   if (!data) return;
-  const rated = updateScores();
-  if (!rated) {
-    setSaveStatus('Rate at least one criterion before submitting', 'error');
+  updateScores();
+  const { valid, firstInvalidElement } = validateEvaluation();
+  if (!valid) {
+    setSaveStatus('Please answer all required fields before submitting', 'error');
+    firstInvalidElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof firstInvalidElement?.focus === 'function') firstInvalidElement.focus();
     return;
   }
   const submitButton = document.querySelector('#submit-evaluation');
@@ -285,9 +384,41 @@ renderEvaluationCategories();
 restoreDraft();
 updateScores();
 
-evaluationForm?.addEventListener('input', () => {
+evaluationForm?.addEventListener('input', (event) => {
   updateScores();
   saveDraft('Changes saved locally');
+  const target = event.target;
+  if (target?.classList.contains('invalid') || target?.name === 'expert-age') {
+    // Re-validate just this field so the error clears as soon as it's fixed,
+    // without re-running (and re-scrolling for) the full form validation.
+    const fieldId = target.id;
+    if (fieldId === 'expert-name') {
+      const value = target.value.trim();
+      setFieldError(fieldId, !value ? 'Please enter your name' : value.length < 2 ? 'Name looks too short' : '');
+    } else if (fieldId === 'expert-age') {
+      const raw = target.value.trim();
+      const value = Number(raw);
+      setFieldError(fieldId, !raw ? 'Please enter your age' : (!Number.isFinite(value) || value < 1 || value > 120) ? 'Enter a valid age between 1 and 120' : '');
+    } else if (fieldId === 'expert-institution') {
+      setFieldError(fieldId, target.value.trim() ? '' : 'Please enter your organization or institution');
+    } else if (fieldId === 'expert-designation') {
+      setFieldError(fieldId, target.value.trim() ? '' : 'Please enter your role or position');
+    } else if (['strengths', 'improvements', 'additional-features'].includes(fieldId)) {
+      setFieldError(fieldId, target.value.trim().length >= 10 ? '' : 'Please write at least 10 characters');
+    }
+  }
+  if (target?.type === 'radio' && target.name?.startsWith('rating-')) {
+    const categoryEl = target.closest('.rating-category');
+    const categoryId = categoryEl?.dataset.category;
+    const category = evaluationCategories.find((entry) => entry.id === categoryId);
+    if (category && categoryEl) {
+      const formData = new FormData(evaluationForm);
+      const stillUnrated = category.items.some(([id]) => !Number.isFinite(Number(formData.get(`rating-${id}`))));
+      categoryEl.classList.toggle('invalid', stillUnrated);
+      const anyUnrated = evaluationForm.querySelector('.rating-category.invalid');
+      if (!anyUnrated) setFieldError('ratings', '');
+    }
+  }
 });
 
 document.querySelector('#save-draft')?.addEventListener('click', () => saveDraft());
