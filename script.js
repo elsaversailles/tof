@@ -224,6 +224,21 @@ function restoreDraft() {
   }
 }
 
+async function insertEvaluationRow(data) {
+  const scores = calculateScores(data.ratings);
+  return supabaseClient.from('evaluations').insert({
+    expert_name: data.expertProfile.name,
+    expert_age: data.expertProfile.age || null,
+    institution: data.expertProfile.institution,
+    designation: data.expertProfile.designation,
+    ratings: data.ratings,
+    strengths: data.feedback.strengths,
+    improvements: data.feedback.improvements,
+    additional_features: data.feedback.additionalFeatures,
+    overall_score: scores.overall
+  });
+}
+
 async function submitEvaluation() {
   const data = collectEvaluation();
   if (!data) return;
@@ -236,25 +251,21 @@ async function submitEvaluation() {
   if (submitButton) submitButton.disabled = true;
   setSaveStatus('Submitting your evaluation…');
   try {
-    const scores = calculateScores(data.ratings);
-    const { error } = await supabaseClient.from('evaluations').insert({
-      expert_name: data.expertProfile.name,
-      expert_age: data.expertProfile.age || null,
-      institution: data.expertProfile.institution,
-      designation: data.expertProfile.designation,
-      ratings: data.ratings,
-      strengths: data.feedback.strengths,
-      improvements: data.feedback.improvements,
-      additional_features: data.feedback.additionalFeatures,
-      overall_score: scores.overall
-    });
+    let { error } = await insertEvaluationRow(data);
+    if (error) {
+      // Retry once: Supabase can occasionally return a transient error
+      // on the first request after a period of inactivity.
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      ({ error } = await insertEvaluationRow(data));
+    }
     if (error) throw error;
     try { localStorage.removeItem(storageKey); } catch (storageError) { /* Browser storage may be unavailable */ }
     evaluationForm?.reset();
     updateScores();
     setSaveStatus('Evaluation submitted, thank you', 'success');
   } catch (error) {
-    setSaveStatus('Could not submit evaluation Check your connection and try again', 'error');
+    const detail = error?.message ? ` (${error.message})` : '';
+    setSaveStatus(`Could not submit evaluation${detail} Please try again`, 'error');
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
