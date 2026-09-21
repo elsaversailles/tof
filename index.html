@@ -15,78 +15,141 @@
 <body>
   <div class="page-noise" aria-hidden="true"></div>
   <button id="admin-open" type="button" class="admin-open-button">Admin</button>
+
   <main id="top">
+
+    <!-- ================= HERO: ONE JOB, TWO PATHS ================= -->
     <section class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> An interactive 3D game about AI and human choices</p>
-        <h1 id="hero-title">Train the<br />AI<br /><em>Shape</em> the outcome</h1>
-        <p class="hero-intro">Step into a Filipino fintech office Review the data, make the call, and see how your choices shape the lives behind the numbers</p>
-        <div class="hero-actions">
-          <a href="#evaluation" class="button button-primary">Take the evaluation survey <span>→</span></a>
-          <a href="#experience" class="text-link">Explore the game <span>↓</span></a>
-        </div>
-        <div class="hero-meta">
-          <div><strong>03</strong><span>fintech challenges</span></div>
-          <div><strong>01</strong><span>role Tough choices</span></div>
-          <div><strong>You</strong><span>make the call</span></div>
-        </div>
+      <p class="eyebrow"><span></span> An interactive 3D game about AI and human choices</p>
+      <h1 id="hero-title">Train the AI<br /><em>Shape</em> the outcome</h1>
+      <p class="hero-intro">Step into a Filipino fintech office. Review the data, make the call, and see how your choices shape the lives behind the numbers.</p>
+      <div class="hero-paths">
+        <a href="#download" class="hero-path hero-path-primary">
+          <span class="hero-path-step">STEP 1</span>
+          <span class="hero-path-title">Play the game <span>→</span></span>
+          <span class="hero-path-note">Free on Windows, Mac, and Web</span>
+        </a>
+        <a href="#survey" class="hero-path hero-path-secondary">
+          <span class="hero-path-step">STEP 2</span>
+          <span class="hero-path-title">Take the survey <span>→</span></span>
+          <span class="hero-path-note">2 minutes, helps us improve the game</span>
+        </a>
       </div>
-      <div class="hero-visual">
-        <img src="2.png">
-        <div class="download-links">
-          <span class="download-label">Download the game</span>
-          <div class="download-buttons">
-            <a href="#" class="button-outline download-button"><svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.6 10.5 4.5v7.1H3V5.6Zm8.3-1.2L21 3v8.5h-9.7V4.4ZM3 12.5h7.5v7l-7.5-1V12.5Zm8.3 0H21V21l-9.7-1.4v-7.1Z"/></svg> Windows</a>
-            <a href="#" class="button-outline download-button"><svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.6c0-2 1.6-3 1.7-3.1-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.3.7-2.9.7-.6 0-1.5-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6.1 1 8.1.7.9 1.5 2 2.5 1.9 1 0 1.4-.6 2.6-.6 1.2 0 1.5.6 2.6.6 1.1 0 1.8-1 2.5-1.9.5-.7.8-1.3 1.1-2-1.3-.5-2.3-1.7-2.3-3.4Zm-2.9-6.2c.5-.7.9-1.6.8-2.4-.8.1-1.7.5-2.2 1.1-.5.6-1 1.5-.8 2.4.9 0 1.7-.5 2.2-1.1Z"/></svg> Mac</a>
-            <a href="#" class="button-outline download-button"><svg class="platform-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9s1.3-6.5 3.8-9Z"/></svg> Web</a>
-          </div>
+      <img class="hero-image" src="2.png" alt="Train or Fail game screenshot" />
+    </section>
+
+    <!-- ================= DOWNLOAD: PRIMARY ACTION ================= -->
+    <section id="download" class="download-section section-shell">
+      <div class="section-label">STEP 1 <span>/ PLAY</span></div>
+      <h2>Get the game</h2>
+      <p class="download-intro">Choose your platform. The full game is free to play.</p>
+      <div class="platform-grid">
+        <a href="#" class="platform-card">
+          <svg class="platform-icon-large" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.6 10.5 4.5v7.1H3V5.6Zm8.3-1.2L21 3v8.5h-9.7V4.4ZM3 12.5h7.5v7l-7.5-1V12.5Zm8.3 0H21V21l-9.7-1.4v-7.1Z"/></svg>
+          <span class="platform-name">Windows</span>
+          <span class="platform-cta">Download <span>↓</span></span>
+        </a>
+        <a href="#" class="platform-card">
+          <svg class="platform-icon-large" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.6c0-2 1.6-3 1.7-3.1-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.3.7-2.9.7-.6 0-1.5-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6.1 1 8.1.7.9 1.5 2 2.5 1.9 1 0 1.4-.6 2.6-.6 1.2 0 1.5.6 2.6.6 1.1 0 1.8-1 2.5-1.9.5-.7.8-1.3 1.1-2-1.3-.5-2.3-1.7-2.3-3.4Zm-2.9-6.2c.5-.7.9-1.6.8-2.4-.8.1-1.7.5-2.2 1.1-.5.6-1 1.5-.8 2.4.9 0 1.7-.5 2.2-1.1Z"/></svg>
+          <span class="platform-name">Mac</span>
+          <span class="platform-cta">Download <span>↓</span></span>
+        </a>
+        <a href="#" class="platform-card">
+          <svg class="platform-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9s1.3-6.5 3.8-9Z"/></svg>
+          <span class="platform-name">Web</span>
+          <span class="platform-cta">Play in browser <span>↓</span></span>
+        </a>
+      </div>
+      <p class="download-footnote">Already played? <a href="#survey" class="text-link">Skip to the survey <span>→</span></a></p>
+    </section>
+
+    <!-- ================= SURVEY: SECONDARY ACTION ================= -->
+    <section id="survey" class="evaluation-section">
+      <div class="section-shell">
+        <div class="section-label light">STEP 2 <span>/ SURVEY</span></div>
+        <div class="evaluation-intro">
+          <h2>Tell us what you think</h2>
+          <p>Whether you're an everyday player or a senior IT professional, share your experience in this ISO/IEC 25010 software quality survey. Tell us what works, what falls short, and what needs improvement.</p>
         </div>
+        <form id="expert-evaluation-form" class="evaluation-form">
+          <div class="evaluation-notice"><span>i</span><p><b>Save your feedback.</b> Save a draft in this browser, then submit when you're ready.</p></div>
+          <section class="form-block" aria-labelledby="profile-heading">
+            <div class="form-block-title"><h3 id="profile-heading">Part 1 / About you</h3><span>Optional</span></div>
+            <div class="profile-grid">
+              <div class="form-field"><label for="expert-name">Name</label><input id="expert-name" name="expert-name" type="text" autocomplete="name" placeholder="Your full name" /></div>
+              <div class="form-field"><label for="expert-age">Age</label><input id="expert-age" name="expert-age" type="number" min="1" max="150" inputmode="numeric" placeholder="for example 26" /></div>
+              <div class="form-field"><label for="expert-institution">Organization or institution</label><input id="expert-institution" name="expert-institution" type="text" autocomplete="organization" placeholder="Organization or institution" /></div>
+              <div class="form-field"><label for="expert-designation">Role or position</label><input id="expert-designation" name="expert-designation" type="text" autocomplete="organization-title" placeholder="for example Software Engineer" /></div>
+            </div>
+          </section>
+          <section class="evaluation-summary" aria-label="Evaluation score summary">
+            <div class="summary-total"><span>OVERALL SCORE</span><strong id="overall-score">—<em>/ 4.00</em></strong></div>
+            <div id="category-summary" class="summary-categories" aria-live="polite"></div>
+          </section>
+          <section class="form-block" aria-labelledby="ratings-heading">
+            <div class="form-block-title"><h3 id="ratings-heading">Part 2 / Rate your experience</h3><span>ISO/IEC 25010 product quality characteristics</span></div>
+            <p class="rating-legend"><b>Scale:</b> 1 = Poor · 2 = Moderate · 3 = Meets the criterion · 4 = Very strong. You may save an incomplete draft at any time.</p>
+            <div id="rating-categories"></div>
+          </section>
+          <section class="form-block" aria-labelledby="feedback-heading">
+            <div class="form-block-title"><h3 id="feedback-heading">Part 3 / Share your feedback</h3><span>Every perspective helps</span></div>
+            <div class="feedback-grid">
+              <div class="feedback-field"><label for="strengths">What worked well?</label><textarea id="strengths" name="strengths" placeholder="What worked especially well in the game?"></textarea></div>
+              <div class="feedback-field"><label for="improvements">What needs improvement?</label><textarea id="improvements" name="improvements" placeholder="What fell short or needs refinement?"></textarea></div>
+              <div class="feedback-field"><label for="additional-features">What would you add?</label><textarea id="additional-features" name="additional-features" placeholder="What features would improve the experience?"></textarea></div>
+            </div>
+          </section>
+          <div class="form-actions">
+            <button id="save-draft" type="button" class="button-outline">Save draft <span>↓</span></button>
+            <button id="submit-evaluation" type="button" class="button button-primary">Submit evaluation <span>→</span></button>
+            <button id="clear-evaluation" type="button" class="button-muted">Clear draft</button>
+            <p id="save-status" class="save-status" role="status" aria-live="polite">Your draft hasn't been saved yet</p>
+          </div>
+        </form>
       </div>
     </section>
+
+    <!-- ================= SUPPORTING CONTEXT (below the fold) ================= -->
     <section class="topics-strip" aria-label="Core topics"><span>YOUR CHOICES MATTER</span><b>✳</b><span>QUESTION THE PATTERN</span><b>✳</b><span>EXPLORE AI ETHICS</span><b>✳</b><span>SEE THE HUMAN IMPACT</span></section>
 
     <section id="experience" class="intro section-shell">
-      <div class="section-label">01 <span>/ THE GAME</span></div>
-      <div class="intro-copy"><p class="kicker">A new job Tough calls A human story</p><h2>Behind the data<br />In the <em>driver’s seat</em></h2><p>You’re the new AI data annotator at Angiloan Enc Bank Investigate transactions, check identities, and assess loans in a 3D simulation where company demands put your judgment to the test</p></div>
+      <div class="section-label">MORE <span>/ ABOUT THE GAME</span></div>
+      <div class="intro-copy"><p class="kicker">A new job. Tough calls. A human story.</p><h2>Behind the data<br />In the <em>driver's seat</em></h2><p>You're the new AI data annotator at Angiloan Enc. Bank. Investigate transactions, check identities, and assess loans in a 3D simulation where company demands put your judgment to the test.</p></div>
       <div class="outcome-panel"><div class="panel-heading"><span>ILLUSTRATIVE GAME PREVIEW</span><b>↗</b></div><div class="outcome-grid"><div><span class="status-dot green"></span><small>MODEL ACCURACY</small><strong>92.4%</strong><em>↑ 3.1%</em></div><div><span class="status-dot amber"></span><small>FAIRNESS INDEX</small><strong>71.8%</strong><em>↓ 5.6%</em></div><div><span class="status-dot dark"></span><small>APPLICANTS IMPACTED</small><strong>18</strong><em>this shift</em></div></div><p class="panel-footnote">What do these numbers mean for the people behind them?</p></div>
     </section>
 
     <section id="modules" class="modules-section">
       <div class="section-shell">
-        <div class="modules-heading"><div class="section-label light">02 <span>/ YOUR CHALLENGES</span></div><h2>Three challenges<br />Every <em>choice</em> counts</h2><p>Spot risk Verify identities Weigh lending decisions Look closer before you make the call</p></div>
+        <div class="modules-heading"><div class="section-label light">MORE <span>/ YOUR CHALLENGES</span></div><h2>Three challenges<br />Every <em>choice</em> counts</h2><p>Spot risk. Verify identities. Weigh lending decisions. Look closer before you make the call.</p></div>
         <div class="module-tabs" role="tablist" aria-label="Game challenges"><button class="module-tab active" type="button" data-module="fraud" role="tab" aria-selected="true"><span>01</span> Fraud detection</button><button class="module-tab" type="button" data-module="kyc" role="tab" aria-selected="false"><span>02</span> Identity verification</button><button class="module-tab" type="button" data-module="credit" role="tab" aria-selected="false"><span>03</span> Credit scoring</button></div>
         <article class="module-display" data-active-module="fraud">
           <img src="3.png" style="width: 100%; height: auto;">
-          <div class="module-content"><p class="module-index">MODULE 01</p><h3>Suspicious activity<br />Or a <em>missing detail?</em></h3><p>Review transactions, camera feeds, and customer profiles Decide what deserves a flag—and what deserves a second look</p><div class="module-question"><span>YOUR CALL</span><p>Is the transaction suspicious, or just unfamiliar?</p></div><a href="#play" class="text-link light">Request a playtest <span>→</span></a></div>
+          <div class="module-content"><p class="module-index">MODULE 01</p><h3>Suspicious activity<br />Or a <em>missing detail?</em></h3><p>Review transactions, camera feeds, and customer profiles. Decide what deserves a flag—and what deserves a second look.</p><div class="module-question"><span>YOUR CALL</span><p>Is the transaction suspicious, or just unfamiliar?</p></div><a href="#download" class="text-link light">Play the game <span>→</span></a></div>
         </article>
       </div>
     </section>
 
     <section class="decision section-shell">
-      <div class="section-label">03 <span>/ THE TOUGH CALLS</span></div>
-      <div class="decision-head"><h2>Your job<br />Your <em>judgment</em></h2><p>Your supervisor wants results Your character needs the paycheck The next decision could put both your job and your principles to the test</p></div>
-      <div class="decision-grid"><article class="decision-card card-profit"><div class="card-number">01</div><h3>Meet<br />the target</h3><p>Keep up with company demands Consider who might pay the price</p><span>The pressure to perform</span></article><div class="decision-path" aria-hidden="true"><i></i><span>OR</span><i></i></div><article class="decision-card card-ethics"><div class="card-number">02</div><h3>Question<br />the decision</h3><p>Look closer at the evidence Consider the person—and the risk of speaking up</p><span>The challenge of fairness</span></article></div>
-      <p class="decision-caption">Every choice adds up Follow your decisions through a branching story and discover the ending you helped create</p>
+      <div class="section-label">MORE <span>/ THE TOUGH CALLS</span></div>
+      <div class="decision-head"><h2>Your job<br />Your <em>judgment</em></h2><p>Your supervisor wants results. Your character needs the paycheck. The next decision could put both your job and your principles to the test.</p></div>
+      <div class="decision-grid"><article class="decision-card card-profit"><div class="card-number">01</div><h3>Meet<br />the target</h3><p>Keep up with company demands. Consider who might pay the price.</p><span>The pressure to perform</span></article><div class="decision-path" aria-hidden="true"><i></i><span>OR</span><i></i></div><article class="decision-card card-ethics"><div class="card-number">02</div><h3>Question<br />the decision</h3><p>Look closer at the evidence. Consider the person—and the risk of speaking up.</p><span>The challenge of fairness</span></article></div>
+      <p class="decision-caption">Every choice adds up. Follow your decisions through a branching story and discover the ending you helped create.</p>
     </section>
 
-    <section id="impact" class="impact-section"><div class="section-shell impact-grid"><div class="impact-copy"><div class="section-label light">04 <span>/ WHY IT MATTERS</span></div><h2>A data point<br />A decision<br />A <em>person</em></h2></div><div class="impact-statement"><p>In this simulation, decisions on a screen become stories you can follow</p><p>Explore how human judgment can shape AI bias, then help us improve the experience with your honest feedback</p><div class="audience"><span>YOUR PERSPECTIVE MATTERS</span><b>Everyday users · Senior IT professionals</b><medium>Experience the game and share what you find</medium></div></div></div></section>
+    <section id="impact" class="impact-section"><div class="section-shell impact-grid"><div class="impact-copy"><div class="section-label light">MORE <span>/ WHY IT MATTERS</span></div><h2>A data point<br />A decision<br />A <em>person</em></h2></div><div class="impact-statement"><p>In this simulation, decisions on a screen become stories you can follow.</p><p>Explore how human judgment can shape AI bias, then help us improve the experience with your honest feedback.</p><div class="audience"><span>YOUR PERSPECTIVE MATTERS</span><b>Everyday users · Senior IT professionals</b><medium>Play the game, then share what you find</medium></div></div></div></section>
 
-    <section id="evaluation" class="evaluation-section">
-      <div class="section-shell">
-        <div class="evaluation-intro"><div><div class="section-label light">05 <span>/ YOUR FEEDBACK</span></div><h2>WE WANT<br /><em>Your Feedback</em></h2></div><p>Tried Train or Fail? Whether you’re an everyday user or a senior IT professional, share your experience in our ISO/IEC 25010 software quality survey Tell us what works, what falls short, and what needs improvement</p></div>
-        <form id="expert-evaluation-form" class="evaluation-form">
-          <div class="evaluation-notice"><span>i</span><p><b>Save your feedback</b> Save a draft in this browser, then download your responses as a JSON file To submit them, send the file to the research team through their collection channel</p></div>
-          <section class="form-block" aria-labelledby="profile-heading"><div class="form-block-title"><h3 id="profile-heading">Part 1 / About you</h3><span>These details are optional</span></div><div class="profile-grid"><div class="form-field"><label for="expert-name">Name</label><input id="expert-name" name="expert-name" type="text" autocomplete="name" placeholder="Your full name" /></div><div class="form-field"><label for="expert-age">Age</label><input id="expert-age" name="expert-age" type="number" min="1" max="150" inputmode="numeric" placeholder="for example 26" /></div><div class="form-field"><label for="expert-institution">Organization or institution</label><input id="expert-institution" name="expert-institution" type="text" autocomplete="organization" placeholder="Organization or institution" /></div><div class="form-field"><label for="expert-designation">Role or position</label><input id="expert-designation" name="expert-designation" type="text" autocomplete="organization-title" placeholder="for example Software Engineer" /></div></div></section>
-          <section class="evaluation-summary" aria-label="Evaluation score summary"><div class="summary-total"><span>OVERALL SCORE</span><strong id="overall-score">—<em>/ 4.00</em></strong></div><div id="category-summary" class="summary-categories" aria-live="polite"></div></section>
-          <section class="form-block" aria-labelledby="ratings-heading"><div class="form-block-title"><h3 id="ratings-heading">Part 2 / Rate your experience</h3><span>ISO/IEC 25010 product quality characteristics</span></div><p class="rating-legend"><b>Scale:</b> 1 = Poor · 2 = Moderate · 3 = Meets the criterion · 4 = Very strong You may save an incomplete draft at any time</p><div id="rating-categories"></div></section>
-          <section class="form-block" aria-labelledby="feedback-heading"><div class="form-block-title"><h3 id="feedback-heading">Part 3 / Share your feedback</h3><span>Every perspective helps</span></div><div class="feedback-grid"><div class="feedback-field"><label for="strengths">What worked well?</label><textarea id="strengths" name="strengths" placeholder="What worked especially well in the game or survey?"></textarea></div><div class="feedback-field"><label for="improvements">What needs improvement?</label><textarea id="improvements" name="improvements" placeholder="What fell short or needs refinement?"></textarea></div><div class="feedback-field"><label for="additional-features">What would you add?</label><textarea id="additional-features" name="additional-features" placeholder="What features or functions would improve the experience?"></textarea></div></div></section>
-          <div class="form-actions"><button id="save-draft" type="button" class="button-outline">Save draft <span>↓</span></button><button id="submit-evaluation" type="button" class="button button-primary">Submit evaluation <span>→</span></button><button id="clear-evaluation" type="button" class="button-muted">Clear draft</button><p id="save-status" class="save-status" role="status" aria-live="polite">Your draft hasn’t been saved yet</p></div>
-        </form>
+    <!-- ================= FINAL RECAP CTA ================= -->
+    <section class="final-cta section-shell">
+      <div class="cta-terminal"><div class="terminal-prompt"><span>ANGILOAN@WORKSTATION:~$</span><span class="typewriter"> your_next_choice_matters</span><i></i></div></div>
+      <h2>Ready to play?</h2>
+      <div class="final-cta-buttons">
+        <a href="#download" class="button button-primary large">Download the game <span>→</span></a>
+        <a href="#survey" class="button-outline large">Take the survey <span>→</span></a>
       </div>
     </section>
 
-    <section id="play" class="final-cta section-shell"><div class="cta-terminal"><div class="terminal-prompt"><span>ANGILOAN@WORKSTATION:~$</span><span class="typewriter"> your_next_choice_matters</span><i></i></div></div><h2>Your next choice<br />could change<br />the <em>story</em></h2><a href="#evaluation" class="button button-primary large">Take a survey <span>→</span></a><p></p></section>
   </main>
+
   <footer class="site-footer section-shell"><a class="brand footer-brand" href="#top"><span></span></a><p>A capstone project exploring AI bias and ethical decision-making through play</p></footer>
 
   <div id="admin-modal" class="admin-modal" aria-hidden="true">

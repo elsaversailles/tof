@@ -50,7 +50,7 @@ function setModule(key) {
   const module = moduleData[key];
   if (!module || !display) return;
   display.dataset.activeModule = key;
-  display.innerHTML = `${module.visual}<div class="module-content"><p class="module-index">${module.index}</p><h3>${module.title}</h3><p>${module.description}</p><div class="module-question"><span>THE QUESTION</span><p>${module.question}</p></div><a href="#play" class="text-link light">${module.action} <span>→</span></a></div>`;
+  display.innerHTML = `${module.visual}<div class="module-content"><p class="module-index">${module.index}</p><h3>${module.title}</h3><p>${module.description}</p><div class="module-question"><span>THE QUESTION</span><p>${module.question}</p></div><a href="#download" class="text-link light">${module.action} <span>→</span></a></div>`;
   tabs.forEach((tab) => {
     const active = tab.dataset.module === key;
     tab.classList.toggle('active', active);
