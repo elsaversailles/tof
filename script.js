@@ -1,3 +1,5 @@
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.site-nav');
 
@@ -222,8 +224,6 @@ function restoreDraft() {
   }
 }
 
-const ghlWebhookUrl = 'https://services.leadconnectorhq.com/hooks/HzaOxDVzGTWAhjOdBfyG/webhook-trigger/9a31b16f-a107-4f47-8a38-71fcc3b73c36';
-
 async function submitEvaluation() {
   const data = collectEvaluation();
   if (!data) return;
@@ -236,14 +236,20 @@ async function submitEvaluation() {
   if (submitButton) submitButton.disabled = true;
   setSaveStatus('Submitting your evaluation…');
   try {
-    const payload = { ...data, scores: calculateScores(data.ratings) };
-    const response = await fetch(ghlWebhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    const scores = calculateScores(data.ratings);
+    const { error } = await supabaseClient.from('evaluations').insert({
+      expert_name: data.expertProfile.name,
+      expert_age: data.expertProfile.age || null,
+      institution: data.expertProfile.institution,
+      designation: data.expertProfile.designation,
+      ratings: data.ratings,
+      strengths: data.feedback.strengths,
+      improvements: data.feedback.improvements,
+      additional_features: data.feedback.additionalFeatures,
+      overall_score: scores.overall
     });
-    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
-    try { localStorage.removeItem(storageKey); } catch (error) { /* Browser storage may be unavailable */ }
+    if (error) throw error;
+    try { localStorage.removeItem(storageKey); } catch (storageError) { /* Browser storage may be unavailable */ }
     evaluationForm?.reset();
     updateScores();
     setSaveStatus('Evaluation submitted, thank you', 'success');
@@ -271,4 +277,132 @@ document.querySelector('#clear-evaluation')?.addEventListener('click', () => {
   try { localStorage.removeItem(storageKey); } catch (error) { /* Browser storage may be unavailable */ }
   updateScores();
   setSaveStatus('Local draft cleared');
+});
+
+/* Admin login and CSV export */
+const adminOpenButton = document.querySelector('#admin-open');
+const adminModal = document.querySelector('#admin-modal');
+const adminCloseButton = document.querySelector('#admin-close');
+const adminLoginForm = document.querySelector('#admin-login-form');
+const adminLoginView = document.querySelector('#admin-login-view');
+const adminPanelView = document.querySelector('#admin-panel-view');
+const adminLoginStatus = document.querySelector('#admin-login-status');
+const adminExportButton = document.querySelector('#admin-export');
+const adminExportStatus = document.querySelector('#admin-export-status');
+const adminLogoutButton = document.querySelector('#admin-logout');
+
+function openAdminModal() {
+  adminModal?.classList.add('open');
+}
+
+function closeAdminModal() {
+  adminModal?.classList.remove('open');
+}
+
+function setAdminLoginStatus(message, type = '') {
+  if (!adminLoginStatus) return;
+  adminLoginStatus.textContent = message;
+  adminLoginStatus.className = `save-status ${type}`.trim();
+}
+
+function setAdminExportStatus(message, type = '') {
+  if (!adminExportStatus) return;
+  adminExportStatus.textContent = message;
+  adminExportStatus.className = `save-status ${type}`.trim();
+}
+
+function showAdminPanel() {
+  adminLoginView?.setAttribute('hidden', '');
+  adminPanelView?.removeAttribute('hidden');
+}
+
+function showAdminLogin() {
+  adminPanelView?.setAttribute('hidden', '');
+  adminLoginView?.removeAttribute('hidden');
+}
+
+async function refreshAdminView() {
+  const { data } = await supabaseClient.auth.getSession();
+  if (data?.session) {
+    showAdminPanel();
+  } else {
+    showAdminLogin();
+  }
+}
+
+adminOpenButton?.addEventListener('click', () => {
+  openAdminModal();
+  refreshAdminView();
+});
+
+adminCloseButton?.addEventListener('click', closeAdminModal);
+
+adminModal?.addEventListener('click', (event) => {
+  if (event.target === adminModal) closeAdminModal();
+});
+
+adminLoginForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const formData = new FormData(adminLoginForm);
+  const email = formData.get('admin-email');
+  const password = formData.get('admin-password');
+  setAdminLoginStatus('Signing in…');
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if (error) {
+    setAdminLoginStatus('Incorrect email or password', 'error');
+    return;
+  }
+  setAdminLoginStatus('');
+  adminLoginForm.reset();
+  showAdminPanel();
+});
+
+adminLogoutButton?.addEventListener('click', async () => {
+  await supabaseClient.auth.signOut();
+  showAdminLogin();
+});
+
+function toCsvValue(value) {
+  const stringValue = value === null || value === undefined ? '' : String(value);
+  if (/[",\n]/.test(stringValue)) return `"${stringValue.replace(/"/g, '""')}"`;
+  return stringValue;
+}
+
+function rowsToCsv(rows) {
+  if (!rows.length) return '';
+  const columns = Object.keys(rows[0]);
+  const header = columns.map(toCsvValue).join(',');
+  const lines = rows.map((row) => columns.map((column) => {
+    const value = row[column];
+    return toCsvValue(typeof value === 'object' && value !== null ? JSON.stringify(value) : value);
+  }).join(','));
+  return [header, ...lines].join('\n');
+}
+
+adminExportButton?.addEventListener('click', async () => {
+  adminExportButton.disabled = true;
+  setAdminExportStatus('Preparing export…');
+  try {
+    const { data, error } = await supabaseClient.from('evaluations').select('*').order('created_at', { ascending: true });
+    if (error) throw error;
+    if (!data || !data.length) {
+      setAdminExportStatus('No submissions to export yet');
+      return;
+    }
+    const csv = rowsToCsv(data);
+    const file = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `train-or-fail-evaluations-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setAdminExportStatus(`Exported ${data.length} submissions`, 'success');
+  } catch (error) {
+    setAdminExportStatus('Could not export submissions', 'error');
+  } finally {
+    adminExportButton.disabled = false;
+  }
 });

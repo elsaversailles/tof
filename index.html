@@ -9,9 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
 </head>
 <body>
   <div class="page-noise" aria-hidden="true"></div>
+  <button id="admin-open" type="button" class="admin-open-button">Admin</button>
   <main id="top">
     <section class="hero section-shell" aria-labelledby="hero-title">
       <div class="hero-copy">
@@ -75,6 +78,29 @@
     <section id="play" class="final-cta section-shell"><div class="cta-terminal"><div class="terminal-prompt"><span>ANGILOAN@WORKSTATION:~$</span><span class="typewriter"> your_next_choice_matters</span><i></i></div></div><h2>Your next choice<br />could change<br />the <em>story</em></h2><a href="mailto:trainorfailgame@gmail.com?subject=Train%20or%20Fail%20-%20Playtest%20Request" class="button button-primary large">Play Now <span>→</span></a><p></p></section>
   </main>
   <footer class="site-footer section-shell"><a class="brand footer-brand" href="#top"><span></span></a><p>A capstone project exploring AI bias and ethical decision-making through play</p></footer>
+
+  <div id="admin-modal" class="admin-modal" aria-hidden="true">
+    <div class="admin-modal-box">
+      <button id="admin-close" type="button" class="admin-modal-close" aria-label="Close">×</button>
+      <div id="admin-login-view">
+        <h3>Admin login</h3>
+        <form id="admin-login-form" class="admin-login-form">
+          <div class="form-field"><label for="admin-email">Email</label><input id="admin-email" name="admin-email" type="email" autocomplete="username" required /></div>
+          <div class="form-field"><label for="admin-password">Password</label><input id="admin-password" name="admin-password" type="password" autocomplete="current-password" required /></div>
+          <button type="submit" class="button button-primary">Sign in</button>
+          <p id="admin-login-status" class="save-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div id="admin-panel-view" hidden>
+        <h3>Admin panel</h3>
+        <p>Export all submitted evaluations as a CSV file</p>
+        <button id="admin-export" type="button" class="button button-primary">Export to CSV <span>↓</span></button>
+        <p id="admin-export-status" class="save-status" role="status" aria-live="polite"></p>
+        <button id="admin-logout" type="button" class="button-muted">Log out</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
