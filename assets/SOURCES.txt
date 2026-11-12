@@ -1,0 +1,30 @@
+﻿Train or Fail landing-page assets
+
+Gameplay images extracted from the user-provided Manuscript.pdf:
+- first-day.png: PDF page 149, Figure 19 (Player's Cubicle)
+- fraud-detection.png: PDF page 46, Figure 3
+- identity-verification.png: PDF page 47, Figure 4
+- credit-scoring.png: PDF page 48, Figure 5
+- city-after-work.png: PDF page 49, Figure 6
+
+Visual direction, palette, and typefaces: user-provided Train-or-Fail_Branding-Kit.pdf.
+The PDF documents themselves are not distributed with the website.
+
+Fonts downloaded from Google Fonts and served locally:
+- font-1.ttf: Darumadrop One Regular (darumadropone-OFL.txt)
+- font-2.ttf: IBM Plex Mono Regular (ibmplexmono-OFL.txt)
+- font-3.ttf: IBM Plex Mono Medium (ibmplexmono-OFL.txt)
+- font-4.ttf: IBM Plex Mono SemiBold (ibmplexmono-OFL.txt)
+
+Windows download destination supplied by the user:
+https://knitech-bucket.s3.ap-southeast-1.amazonaws.com/TrainOrFail.exe
+
+Landing-page trailer:
+- train-or-fail-trailer.mp4: the final 59.733-second edit from
+  deliverables/Train-or-Fail-Launch-Trailer-The-Creator.mp4.
+- Gameplay source: user-supplied 2026-11-12 22-37-27.mkv.
+- Music: The Creator by Hey Pluto!, from the MP3 supplied by the user.
+  Original gameplay audio is removed; the music is edited to the picture.
+- trailer-poster.webp: frame at 31.15 seconds from the final trailer.
+- trailer-captions.vtt: optional music captions for the video player.
+

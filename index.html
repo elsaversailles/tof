@@ -2,169 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Train or Fail is an interactive 3D game about AI, fairness, and the human choices behind the data" />
-  <title>Train or Fail — AI Ethics Simulation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#12171f" />
+  <meta name="description" content="Play a junior AI data annotator in Train or Fail. Review evidence across three departments, face the consequences of your choices, and discover seven outcomes. Free for Windows." />
+  <meta property="og:title" content="Train or Fail — Your decisions shape the AI" />
+  <meta property="og:description" content="A story-driven 3D game about AI and human judgment. Nine workdays, three departments, seven outcomes. Download for Windows." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/fraud-detection.png" />
+  <title>Train or Fail — Your decisions shape the AI</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="assets/trailer-poster.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
-  <script src="config.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-  <button id="admin-open" type="button" class="admin-open-button">Admin</button>
-
-  <main id="top">
-
-    <!-- ================= HERO: ONE JOB, TWO PATHS ================= -->
-    <section class="hero section-shell" aria-labelledby="hero-title">
-      <p class="eyebrow"><span></span> An interactive 3D game about AI and human choices</p>
-      <h1 id="hero-title">Train the AI<br /><em>Shape</em> the outcome</h1>
-      <p class="hero-intro">Step into a Filipino fintech office. Review the data, make the call, and see how your choices shape the lives behind the numbers.</p>
-      <div class="hero-paths">
-        <a href="#download" class="hero-path hero-path-primary">
-          <span class="hero-path-step">STEP 1</span>
-          <span class="hero-path-title">Play the game <span>→</span></span>
-          <span class="hero-path-note">Free on Windows, Mac, and Web</span>
-        </a>
-        <a href="#survey" class="hero-path hero-path-secondary">
-          <span class="hero-path-step">STEP 2</span>
-          <span class="hero-path-title">Take the survey <span>→</span></span>
-          <span class="hero-path-note">2 minutes, helps us improve the game</span>
-        </a>
-      </div>
-      <img class="hero-image" src="2.png" alt="Train or Fail game screenshot" />
-    </section>
-
-    <!-- ================= DOWNLOAD: PRIMARY ACTION ================= -->
-    <section id="download" class="download-section section-shell">
-      <div class="section-label">STEP 1 <span>/ PLAY</span></div>
-      <h2>Get the game</h2>
-      <p class="download-intro">Choose your platform. The full game is free to play.</p>
-      <div class="platform-grid">
-        <a href="https://drive.google.com/file/d/1U8Poqip99bedJcsovkSFH-Nhw8pNqDRM/view" class="platform-card" target="_blank" rel="noopener">
-          <svg class="platform-icon-large" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.6 10.5 4.5v7.1H3V5.6Zm8.3-1.2L21 3v8.5h-9.7V4.4ZM3 12.5h7.5v7l-7.5-1V12.5Zm8.3 0H21V21l-9.7-1.4v-7.1Z"/></svg>
-          <span class="platform-name">Windows</span>
-          <span class="platform-cta">Download <span>↓</span></span>
-        </a>
-      </div>
-      <p class="download-footnote">Already played? <a href="#survey" class="text-link">Skip to the survey <span>→</span></a></p>
-    </section>
-
-    <!-- ================= SURVEY: SECONDARY ACTION ================= -->
-    <section id="survey" class="evaluation-section">
-      <div class="section-shell">
-        <div class="section-label light">STEP 2 <span>/ SURVEY</span></div>
-        <div class="evaluation-intro">
-          <h2>Tell us what you think</h2>
-          <p>Whether you're an everyday player or a senior IT professional, share your experience in this ISO/IEC 25010 software quality survey. Tell us what works, what falls short, and what needs improvement.</p>
-        </div>
-        <form id="expert-evaluation-form" class="evaluation-form">
-          <div class="evaluation-notice"><span>i</span><p><b>Save your feedback.</b> Save a draft in this browser, then submit when you're ready.</p></div>
-          <section class="form-block" aria-labelledby="profile-heading">
-            <div class="form-block-title"><h3 id="profile-heading">Part 1 / About you</h3><span>Required</span></div>
-            <div class="profile-grid">
-              <div class="form-field"><label for="expert-name">Name <em class="required-mark">*</em></label><input id="expert-name" name="expert-name" type="text" autocomplete="name" placeholder="Your full name" required /><span class="field-error" data-error-for="expert-name" role="alert"></span></div>
-              <div class="form-field"><label for="expert-age">Age <em class="required-mark">*</em></label><input id="expert-age" name="expert-age" type="number" min="1" max="120" inputmode="numeric" placeholder="for example 26" required /><span class="field-error" data-error-for="expert-age" role="alert"></span></div>
-              <div class="form-field"><label for="expert-institution">Organization or institution <em class="required-mark">*</em></label><input id="expert-institution" name="expert-institution" type="text" autocomplete="organization" placeholder="Organization or institution" required /><span class="field-error" data-error-for="expert-institution" role="alert"></span></div>
-              <div class="form-field"><label for="expert-designation">Role or position <em class="required-mark">*</em></label><input id="expert-designation" name="expert-designation" type="text" autocomplete="organization-title" placeholder="for example Software Engineer" required /><span class="field-error" data-error-for="expert-designation" role="alert"></span></div>
-            </div>
-          </section>
-          <section class="evaluation-summary" aria-label="Evaluation score summary">
-            <div class="summary-total"><span>OVERALL SCORE</span><strong id="overall-score">—<em>/ 4.00</em></strong></div>
-            <div id="category-summary" class="summary-categories" aria-live="polite"></div>
-          </section>
-          <section class="form-block" aria-labelledby="ratings-heading">
-            <div class="form-block-title"><h3 id="ratings-heading">Part 2 / Rate your experience <em class="required-mark">*</em></h3><span>ISO/IEC 25010 product quality characteristics</span></div>
-            <p class="rating-legend"><b>Scale:</b> 1 = Poor · 2 = Moderate · 3 = Meets the criterion · 4 = Very strong. Every criterion below must be rated before you can submit.</p>
-            <span class="field-error" data-error-for="ratings" role="alert"></span>
-            <div id="rating-categories"></div>
-          </section>
-          <section class="form-block" aria-labelledby="feedback-heading">
-            <div class="form-block-title"><h3 id="feedback-heading">Part 3 / Share your feedback <em class="required-mark">*</em></h3><span>Every perspective helps</span></div>
-            <div class="feedback-grid">
-              <div class="feedback-field"><label for="strengths">What worked well?</label><textarea id="strengths" name="strengths" placeholder="What worked especially well in the game?" minlength="10" required></textarea><span class="field-error" data-error-for="strengths" role="alert"></span></div>
-              <div class="feedback-field"><label for="improvements">What needs improvement?</label><textarea id="improvements" name="improvements" placeholder="What fell short or needs refinement?" minlength="10" required></textarea><span class="field-error" data-error-for="improvements" role="alert"></span></div>
-              <div class="feedback-field"><label for="additional-features">What would you add?</label><textarea id="additional-features" name="additional-features" placeholder="What features would improve the experience?" minlength="10" required></textarea><span class="field-error" data-error-for="additional-features" role="alert"></span></div>
-            </div>
-          </section>
-          <div class="form-actions">
-            <button id="save-draft" type="button" class="button-outline">Save draft <span>↓</span></button>
-            <button id="submit-evaluation" type="button" class="button button-primary">Submit evaluation <span>→</span></button>
-            <button id="clear-evaluation" type="button" class="button-muted">Clear draft</button>
-            <p id="save-status" class="save-status" role="status" aria-live="polite">Your draft hasn't been saved yet</p>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- ================= SUPPORTING CONTEXT (below the fold) ================= -->
-    <section class="topics-strip" aria-label="Core topics"><span>YOUR CHOICES MATTER</span><b>✳</b><span>QUESTION THE PATTERN</span><b>✳</b><span>EXPLORE AI ETHICS</span><b>✳</b><span>SEE THE HUMAN IMPACT</span></section>
-
-    <section id="experience" class="intro section-shell">
-      <div class="section-label">MORE <span>/ ABOUT THE GAME</span></div>
-      <div class="intro-copy"><p class="kicker">A new job. Tough calls. A human story.</p><h2>Behind the data<br />In the <em>driver's seat</em></h2><p>You're the new AI data annotator at Angiloan Enc. Bank. Investigate transactions, check identities, and assess loans in a 3D simulation where company demands put your judgment to the test.</p></div>
-      <div class="outcome-panel"><div class="panel-heading"><span>ILLUSTRATIVE GAME PREVIEW</span><b>↗</b></div><div class="outcome-grid"><div><span class="status-dot green"></span><small>MODEL ACCURACY</small><strong>92.4%</strong><em>↑ 3.1%</em></div><div><span class="status-dot amber"></span><small>FAIRNESS INDEX</small><strong>71.8%</strong><em>↓ 5.6%</em></div><div><span class="status-dot dark"></span><small>APPLICANTS IMPACTED</small><strong>18</strong><em>this shift</em></div></div><p class="panel-footnote">What do these numbers mean for the people behind them?</p></div>
-    </section>
-
-    <section id="modules" class="modules-section">
-      <div class="section-shell">
-        <div class="modules-heading"><div class="section-label light">MORE <span>/ YOUR CHALLENGES</span></div><h2>Three challenges<br />Every <em>choice</em> counts</h2><p>Spot risk. Verify identities. Weigh lending decisions. Look closer before you make the call.</p></div>
-        <div class="module-tabs" role="tablist" aria-label="Game challenges"><button class="module-tab active" type="button" data-module="fraud" role="tab" aria-selected="true"><span>01</span> Fraud detection</button><button class="module-tab" type="button" data-module="kyc" role="tab" aria-selected="false"><span>02</span> Identity verification</button><button class="module-tab" type="button" data-module="credit" role="tab" aria-selected="false"><span>03</span> Credit scoring</button></div>
-        <article class="module-display" data-active-module="fraud">
-          <img src="3.png" style="width: 100%; height: auto;">
-          <div class="module-content"><p class="module-index">MODULE 01</p><h3>Suspicious activity<br />Or a <em>missing detail?</em></h3><p>Review transactions, camera feeds, and customer profiles. Decide what deserves a flag—and what deserves a second look.</p><div class="module-question"><span>YOUR CALL</span><p>Is the transaction suspicious, or just unfamiliar?</p></div><a href="#download" class="text-link light">Play the game <span>→</span></a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="decision section-shell">
-      <div class="section-label">MORE <span>/ THE TOUGH CALLS</span></div>
-      <div class="decision-head"><h2>Your job<br />Your <em>judgment</em></h2><p>Your supervisor wants results. Your character needs the paycheck. The next decision could put both your job and your principles to the test.</p></div>
-      <div class="decision-grid"><article class="decision-card card-profit"><div class="card-number">01</div><h3>Meet<br />the target</h3><p>Keep up with company demands. Consider who might pay the price.</p><span>The pressure to perform</span></article><div class="decision-path" aria-hidden="true"><i></i><span>OR</span><i></i></div><article class="decision-card card-ethics"><div class="card-number">02</div><h3>Question<br />the decision</h3><p>Look closer at the evidence. Consider the person—and the risk of speaking up.</p><span>The challenge of fairness</span></article></div>
-      <p class="decision-caption">Every choice adds up. Follow your decisions through a branching story and discover the ending you helped create.</p>
-    </section>
-
-    <section id="impact" class="impact-section"><div class="section-shell impact-grid"><div class="impact-copy"><div class="section-label light">MORE <span>/ WHY IT MATTERS</span></div><h2>A data point<br />A decision<br />A <em>person</em></h2></div><div class="impact-statement"><p>In this simulation, decisions on a screen become stories you can follow.</p><p>Explore how human judgment can shape AI bias, then help us improve the experience with your honest feedback.</p><div class="audience"><span>YOUR PERSPECTIVE MATTERS</span><b>Everyday users · Senior IT professionals</b><medium>Play the game, then share what you find</medium></div></div></div></section>
-
-    <!-- ================= FINAL RECAP CTA ================= -->
-    <section class="final-cta section-shell">
-      <div class="cta-terminal"><div class="terminal-prompt"><span>ANGILOAN@WORKSTATION:~$</span><span class="typewriter"> your_next_choice_matters</span><i></i></div></div>
-      <h2>Ready to play?</h2>
-      <div class="final-cta-buttons">
-        <a href="#download" class="button button-primary large">Download the game <span>→</span></a>
-        <a href="#survey" class="button-outline large">Take the survey <span>→</span></a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer section-shell"><a class="brand footer-brand" href="#top"><span></span></a><p>A capstone project exploring AI bias and ethical decision-making through play</p></footer>
-
-  <div id="admin-modal" class="admin-modal" aria-hidden="true">
-    <div class="admin-modal-box">
-      <button id="admin-close" type="button" class="admin-modal-close" aria-label="Close">×</button>
-      <div id="admin-login-view">
-        <h3>Admin login</h3>
-        <form id="admin-login-form" class="admin-login-form">
-          <div class="form-field"><label for="admin-email">Email</label><input id="admin-email" name="admin-email" type="email" autocomplete="username" required /></div>
-          <div class="form-field"><label for="admin-password">Password</label><input id="admin-password" name="admin-password" type="password" autocomplete="current-password" required /></div>
-          <button type="submit" class="button button-primary">Sign in</button>
-          <p id="admin-login-status" class="save-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-      <div id="admin-panel-view" hidden>
-        <h3>Admin panel</h3>
-        <p>Export all submitted evaluations as a CSV file</p>
-        <button id="admin-export" type="button" class="button button-primary">Export to CSV <span>↓</span></button>
-        <p id="admin-export-status" class="save-status" role="status" aria-live="polite"></p>
-        <button id="admin-logout" type="button" class="button-muted">Log out</button>
-      </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M2 4.5 10.5 3.3v8H2zm10-1.4L22 1.7v9.6H12zM2 12.8h8.5v8L2 19.6zm10 0h10v9.5l-10-1.4z"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="#top" aria-label="Train or Fail home">Train <span>or</span> Fail</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu <svg class="icon" aria-hidden="true"><use href="#icon-menu"/></svg></button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="#about">The game</a>
+        <a href="#gameplay">Gameplay</a>
+        <a href="#world">The story</a>
+        <a class="nav-download" href="#download">Get the game <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+      </nav>
     </div>
-  </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Your decisions <span>shape the AI</span></h1>
+          <p>A story-driven game about the people behind the data. Take a job at a Filipino fintech company, review the evidence, and face the consequences of every verdict.</p>
+          <div class="hero-actions">
+            <a class="button button-primary download-link" href="https://knitech-bucket.s3.ap-southeast-1.amazonaws.com/TrainOrFail.exe" download="TrainOrFail.exe" aria-describedby="hero-download-note"><svg aria-hidden="true"><use href="#icon-windows"/></svg>Download for Windows</a>
+            <p class="download-note" id="hero-download-note">Free · Direct Windows download</p>
+            <a class="text-link" href="#gameplay">Explore the gameplay <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </div>
+        </div>
+        <figure class="hero-trailer" id="trailer">
+          <div class="trailer-player">
+            <video class="trailer-video" controls autoplay muted playsinline preload="metadata" poster="assets/trailer-poster.webp" width="1920" height="1080" aria-label="Train or Fail launch trailer">
+              <source src="assets/train-or-fail-trailer.mp4" type="video/mp4" />
+              <track kind="captions" src="assets/trailer-captions.vtt" srclang="en" label="English" />
+              <p><a href="assets/train-or-fail-trailer.mp4">Watch the Train or Fail launch trailer</a>.</p>
+            </video>
+            <button class="trailer-play" type="button" aria-label="Play the Train or Fail launch trailer" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4v16l13-8z"/></svg>Play trailer</button>
+          </div>
+          <p class="trailer-status" role="status" hidden></p>
+          <figcaption class="trailer-caption"><a href="assets/train-or-fail-trailer.mp4">Open video</a></figcaption>
+        </figure>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="overview paper-section" id="about" aria-labelledby="about-title">
+      <div class="shell">
+        <div class="overview-intro">
+          <h2 id="about-title">A new job in AI</h2>
+          <div><p>You’re the newest data annotator at Angiloan Enc. Bank. Your supervisor expects results. The applicants need a fair decision. You need the paycheck.</p><p>Investigate transactions, verify identities, and assess loans through hands-on tasks in a navigable 3D office.</p></div>
+        </div>
+        <dl class="game-facts"><div><dt>Workdays</dt><dd>9</dd></div><div><dt>Departments</dt><dd>3</dd></div><div><dt>Possible outcomes</dt><dd>7</dd></div></dl>
+        <div class="game-loop">
+          <article><h3>Inspect the evidence</h3><p>Load a case and examine the details. A transaction, an ID, or a financial record can tell more than the first impression.</p></article>
+          <article><h3>Make your decision</h3><p>Classify the case or set a credit score. Balance what the company expects with what you’ve learned about the person.</p></article>
+          <article><h3>See what follows</h3><p>Read your shift report and return the next day. Your recorded decisions shape the ending you reach.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="assignments paper-section" id="gameplay" aria-labelledby="gameplay-title">
+      <div class="shell">
+        <div class="section-intro"><h2 id="gameplay-title">Three departments to test your judgment</h2><p>Explore the tasks you’ll take on over nine workdays.</p></div>
+        <div class="department-tabs" role="tablist" aria-label="Explore the game departments">
+          <button id="tab-fraud" class="department-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-fraud" tabindex="0">Fraud detection</button>
+          <button id="tab-identity" class="department-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-identity" tabindex="-1">Identity verification</button>
+          <button id="tab-credit" class="department-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-credit" tabindex="-1">Credit scoring</button>
+        </div>
+        <div id="panel-fraud" class="department-panel" role="tabpanel" aria-labelledby="tab-fraud" tabindex="0">
+          <figure class="department-figure"><button class="screenshot-button" type="button" data-lightbox="assets/fraud-detection.png" data-caption="Fraud detection: inspect the location, time, amount, and purchased item before making a decision." aria-label="Enlarge the fraud detection screenshot"><img src="assets/fraud-detection.png" alt="Fraud detection screen showing CCTV evidence, transaction details, and classification buttons." width="1089" height="624" loading="lazy"/><span class="image-expand"><svg class="icon" aria-hidden="true"><use href="#icon-expand"/></svg></span></button></figure>
+          <div class="department-copy"><p class="day-range">Days 1–3</p><h3>Investigate suspicious transactions</h3><p>Inspect CCTV, compare the location and time, and check the item and amount. Decide whether the activity is legitimate or suspicious.</p><p class="case-question">Is the evidence convincing, or is the situation just unfamiliar?</p></div>
+        </div>
+        <div id="panel-identity" class="department-panel" role="tabpanel" aria-labelledby="tab-identity" tabindex="0" hidden>
+          <figure class="department-figure"><button class="screenshot-button" type="button" data-lightbox="assets/identity-verification.png" data-caption="Know Your Customer: compare the applicant model with the fictional identification supplied." aria-label="Enlarge the identity verification screenshot"><img src="assets/identity-verification.png" alt="An applicant model displayed beside a fictional identification card in the Know Your Customer screen." width="1094" height="612" loading="lazy"/><span class="image-expand"><svg class="icon" aria-hidden="true"><use href="#icon-expand"/></svg></span></button></figure>
+          <div class="department-copy"><p class="day-range">Days 4–6</p><h3>Match the person to the record</h3><p>Rotate the applicant model and inspect the identification. Compare the details before accepting or flagging the identity.</p><p class="case-question">What proves an identity—and who might the process leave out?</p></div>
+        </div>
+        <div id="panel-credit" class="department-panel" role="tabpanel" aria-labelledby="tab-credit" tabindex="0" hidden>
+          <figure class="department-figure"><button class="screenshot-button" type="button" data-lightbox="assets/credit-scoring.png" data-caption="Credit scoring: review financial records, set the slider, and submit a decision or reject the application." aria-label="Enlarge the credit scoring screenshot"><img src="assets/credit-scoring.png" alt="Financial document tabs and a slider for the proposed credit decision in the credit scoring screen." width="1100" height="598" loading="lazy"/><span class="image-expand"><svg class="icon" aria-hidden="true"><use href="#icon-expand"/></svg></span></button></figure>
+          <div class="department-copy"><p class="day-range">Days 7–9</p><h3>Decide who gets the loan</h3><p>Read payment histories, arrears, and debt ratios. Use the slider to submit your assessment, or reject the application.</p><p class="case-question">What does your decision make possible for the person applying?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="world-section" id="world" aria-labelledby="world-title">
+      <div class="shell world-grid">
+        <figure class="world-image"><button class="screenshot-button" type="button" data-lightbox="assets/city-after-work.png" data-caption="The commute home through the game’s Filipino city setting." aria-label="Enlarge the city gameplay screenshot"><img src="assets/city-after-work.png" alt="A jeepney passes a hospital on a rainy evening in the game's Filipino city." width="1085" height="615" loading="lazy"/><span class="image-expand"><svg class="icon" aria-hidden="true"><use href="#icon-expand"/></svg></span></button></figure>
+        <div class="world-copy"><h2 id="world-title">Your choices follow you home</h2><p>Leave the cubicle and take the commute through a Filipino city. The people in your case files have lives beyond your screen.</p><p>Follow the company’s rules, question them, or find your own way through. Six narrative endings and the possibility of termination make seven outcomes to discover.</p><a class="text-link" href="#download">Find your ending <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></div>
+      </div>
+    </section>
+
+    <section class="download-section paper-section" id="download" aria-labelledby="download-title">
+      <div class="shell">
+        <div class="download-grid">
+          <div class="download-copy"><h2 id="download-title">Start your first shift</h2><p>The next case is waiting. Play Train or Fail free on Windows and see where your judgment takes you.</p><p class="platform-details">Windows PC · Single player · Keyboard and mouse</p></div>
+          <div class="download-action"><a class="button button-primary download-link" href="https://knitech-bucket.s3.ap-southeast-1.amazonaws.com/TrainOrFail.exe" download="TrainOrFail.exe" aria-describedby="download-source"><svg aria-hidden="true"><use href="#icon-windows"/></svg>Download for Windows</a><p class="download-note" id="download-source">Free · Direct Windows download</p><p class="download-instructions">Save <span class="filename">TrainOrFail.exe</span>, then open it on your Windows PC to play.</p></div>
+        </div>
+        <div class="faq" aria-label="Before you start">
+          <h3>Before you play</h3>
+          <div class="faq-items">
+            <details><summary>Do I need to know how to code?<svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></summary><p>No. You inspect evidence and make decisions through the game’s workstation interfaces. An in-game tutorial introduces your tasks.</p></details>
+            <details><summary>How do I move around and interact?<svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></summary><p>Use <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> to move and the mouse to look around. Press <kbd>E</kbd> to interact, click to use the task panels, and use <kbd>Esc</kbd> for pause or back actions. Follow the prompts for each scene.</p></details>
+            <details><summary>Can I play on Mac, mobile, or in a browser?<svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></summary><p>The available download is for Windows PCs. The game runs on your computer.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><a class="wordmark" href="#top" aria-label="Train or Fail home">Train <span>or</span> Fail</a><p>Developed by KniTech</p><a href="#top">Back to top</a></div></footer>
+  <dialog id="screenshot-dialog" class="screenshot-dialog" aria-label="Gameplay screenshot viewer" aria-describedby="dialog-caption">
+    <div class="dialog-toolbar"><span>Gameplay screenshot</span><button class="dialog-close" type="button" aria-label="Close screenshot"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button></div>
+    <div class="dialog-stage" aria-busy="false"><p id="image-status" role="status" aria-live="polite" hidden>Loading screenshot…</p><img id="dialog-image" alt="" hidden/><button id="image-retry" class="button button-primary" type="button" hidden>Try again</button></div>
+    <p id="dialog-caption"></p>
+  </dialog>
 </body>
 </html>
