@@ -256,3 +256,6 @@ kbd { font: 13px var(--mono); background: #e3e9ee; padding: 2px 5px; border-radi
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.overview-image { margin: var(--space-4) 0 0; }
+.overview-image img { display: block; width: 100%; height: auto; border-radius: var(--viewer-radius); }

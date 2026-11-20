@@ -29,3 +29,5 @@ Landing-page trailer:
 - trailer-poster.webp: frame at 31.15 seconds from the final trailer.
 - trailer-captions.vtt: optional music captions for the video player.
 
+
+angiloan-building.png: user-supplied Screenshot 2026-11-21 072544.png, showing the Angiloan bank exterior in the overview section.
