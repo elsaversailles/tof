@@ -21,10 +21,11 @@ https://knitech-bucket.s3.ap-southeast-1.amazonaws.com/TrainOrFail.exe
 
 Landing-page trailer:
 - train-or-fail-trailer.mp4: the final 59.733-second edit from
-  deliverables/Train-or-Fail-Launch-Trailer-The-Creator.mp4.
+  deliverables/Train-or-Fail-Launch-Trailer-Ukele.mp4.
 - Gameplay source: user-supplied 2026-11-12 22-37-27.mkv.
-- Music: The Creator by Hey Pluto!, from the MP3 supplied by the user.
-  Original gameplay audio is removed; the music is edited to the picture.
+- Music: ukele but tof.mp3, supplied by the user.
+  Original gameplay audio is removed; trailing silence is trimmed and a
+  pitch-preserving tempo adjustment fits the music to the existing picture edit.
 - trailer-poster.webp: frame at 31.15 seconds from the final trailer.
 - trailer-captions.vtt: optional music captions for the video player.
 
